@@ -1,0 +1,10 @@
+[Unit]
+Description=Run notes-org-export.service every Monday at midnight.
+
+[Timer]
+OnCalendar=weekly
+Persistent=true
+Unit=notes-org-export.service
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,182 @@
+############
+## Colors ##
+############
+
+[colors]
+background = #000
+background-alt = #000
+foreground = #fff
+foreground-alt = #55
+primary = #ffb52a
+secondary = #e60053
+alert = #bd2c40
+
+[global/wm]
+#margin-top = 5
+#margin-bottom = 5
+
+
+##################
+## Bar settings ##
+##################
+
+[bar/main]
+;monitor = ${env:MONITOR:HDMI-1}
+width = 100%
+offset-x = 0
+offset-y = 0
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+overline-size = 0
+overline-color = #f00
+underline-size = 2
+underline-color = #CA4A4B
+
+border-bottom-size = 3
+border-bottom-color = #CA4A4B 
+
+border-top-size = 0
+border-top-color = #CA4A4B 
+
+padding-left = 0
+padding-right = 0
+module-margin-left = 0
+module-margin-right = 5
+
+
+###########
+## Fonts ##
+###########
+
+font-0 = Fira Sans:size=10:weight=regular;2
+font-1 = FontAwesome:pixelsize=10.0;3
+font-2 = WunconSiji:pixelsize=10.0;2
+
+
+######################
+## Modules position ##
+######################
+
+modules-left = i3 mpd
+modules-center =
+modules-right = volume date powermenu
+
+tray-position = right
+tray-padding = 3
+tray-transparent = false
+tray-background = ${root.background}
+
+######################
+## Modules config   ##
+######################
+
+[module/i3]
+type = internal/i3
+
+format = <label-state>
+index-sort = true
+label-mode = "%mode%"
+label-mode-foreground = ${colors.foreground}
+label-mode-background = ${colors.background}
+label-mode-padding = 3
+label-focused = "%index%"
+label-focused-foreground = ${colors.background}
+label-focused-background = #CA4A4B
+label-focused-underline = 
+label-focused-padding = 3
+label-unfocused = %index%
+label-unfocused-padding = 3
+label-urgent = %index%!
+label-urgent-foreground = ${colors.foreground}
+label-urgent-background = ${colors.background}
+label-urgent-padding = 4
+label-visible-foreground = ${colors.foreground}
+label-visible-background = ${colors.background}
+label-visible-padding = 4
+
+[module/xwindow]
+type = internal/xwindow
+
+format-background = 
+format-foreground = #ffffff
+format-padding = 0
+label = "   %title%"
+label-maxlen = 50
+
+[module/filesystem]
+type = internal/fs
+interval = 25
+
+mount-0 = /
+label-mounted = fs: %free%
+
+[module/mpd]
+type = internal/mpd
+
+host = 127.0.0.1
+port = 6600
+; Seconds to sleep between progressbar/song timer sync
+; Default: 1
+interval = 2
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+
+label = %percentage%%
+
+[module/memory]
+type = internal/memory
+interval = 2
+
+label = %percentage_used%%
+
+[module/date]
+type = internal/date
+interval = 1
+
+time = "%A %B %d"
+format =    <label>
+date = "%I:%M %p"
+;label = " %{A1:steam:}  %date% %time%  %{A}"
+
+[module/volume]
+type = internal/volume
+
+format-volume = "   <label-volume>"
+label-muted = "   muted"
+mapping = true
+
+
+[module/temperature]
+type = internal/temperature
+
+thermal-zone = 0
+warn-temperature = 60
+label =    %temperature%
+label-warn-foreground = ${colors.secondary}
+
+[module/powermenu]
+type = custom/menu
+
+label-open = %{O-2}%{O10}
+label-open-foreground = #e60053
+label-close = 
+label-close-foreground = #e60053
+label-separator = |
+label-separator-foreground = #55
+menu-0-0 = reboot
+menu-0-0-exec = systemctl reboot
+menu-0-1 = power off
+menu-0-1-exec = systemctl poweroff
+menu-0-2 = lock
+menu-0-2-exec = xscreensaver-command -lock
+menu-0-3 = log out
+menu-0-3-exec = i3-msg exit
+menu-0-4 = hibernate
+menu-0-4-exec = systemctl hibernate
+
+
+; vim:ft=dosini

@@ -1,0 +1,5 @@
+[Unit]
+Description=Exports Org project Notes and pushes Git to GH Pages
+
+[Service]
+ExecStart=/home/dale/.dotfiles/bin/notes-org-export.sh

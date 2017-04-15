@@ -1,0 +1,17 @@
+[user]
+	email = dale@dale.io
+	name = Dale Karp
+
+[alias]
+	prune-remotes = fetch --prune
+	undo = reset --soft HEAD^
+	glog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+	stash-all = stash save --include-untracked
+[log]
+	decorate = full
+[rebase]
+	autostash = true
+[stash]
+	showPatch = true
+[push]
+	followTags = true

@@ -1,0 +1,5 @@
+[Unit]
+Description=Exports Org project WhatIDid and pushes Git to GH Pages
+
+[Service]
+ExecStart=/home/dale/.dotfiles/bin/whatidid-org-export.sh
