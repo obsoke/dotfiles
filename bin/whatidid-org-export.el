@@ -9,7 +9,7 @@
 (setq org-publish-project-alist
       '(("whatidid"
          :base-directory "~/org/whatidid/"
-         :publishing-directory "~/web/obsoke.com/whatidid"
+         :publishing-directory "~/projects/web/obsoke.com/whatidid"
          :publishing-function org-twbs-publish-to-html
          :with-headline-numbers nil
          :table-of-contents 2)))

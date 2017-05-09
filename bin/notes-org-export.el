@@ -9,7 +9,7 @@
 (setq org-publish-project-alist
       '(("notes"
          :base-directory "~/org/notes/"
-         :publishing-directory "~/web/obsoke.com/notes"
+         :publishing-directory "~/projects/web/obsoke.com/notes"
          :publishing-function org-twbs-publish-to-html
          :with-headline-numbers nil
          :table-of-contents 2)))

@@ -7,7 +7,7 @@ eval $(keychain --eval --quiet --noask id_rsa)
 emacs --batch -l ~/.dotfiles/bin/whatidid-org-export.el
 
 # change directory to our repo
-cd ~/web/obsoke.com
+cd ~/projects/web/obsoke.com
 
 # commit latest changes
 git commit -am "WhatIDid update for: $(date)"
