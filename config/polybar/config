@@ -61,7 +61,7 @@ font-2 = WunconSiji:pixelsize=10.0;2
 
 modules-left = i3 mpd
 modules-center =
-modules-right = volume date powermenu
+modules-right = volume date
 
 tray-position = right
 tray-padding = 3

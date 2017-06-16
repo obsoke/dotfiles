@@ -27,7 +27,7 @@ SPACESHIP_PROMPT_ORDER=(
   #swift         # Swift section
   #golang        # Go section
   #docker        # Docker section
-  #venv          # virtualenv section
+  venv          # virtualenv section
   #pyenv         # Pyenv section
   line_sep      # Line break
   #vi_mode       # Vi-mode indicator
@@ -44,13 +44,14 @@ alias vi='vim'
 alias v='vim'
 alias ..='cd ..'
 alias ...='cd ../..'
-
+alias become-postgres='sudo -u postgres -i'
 alias npm-ls='npm ls -g --depth=0'
-
 alias docker-killimg='docker rmi $(docker images -a -q)'
 
 # load zsh syntax highlight plugin
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
 # load keychain
 eval $(keychain --eval --quiet --noask id_rsa)
+# setup & load virtualenvwrapper
+export WORKON_HOME=~/.venvs
+source /usr/bin/virtualenvwrapper.sh

@@ -12,6 +12,7 @@
          :publishing-directory "~/projects/web/obsoke.com/notes"
          :publishing-function org-twbs-publish-to-html
          :with-headline-numbers nil
+         :html-head-extra "<style>h4 { font-weight: bold; }</style>"
          :table-of-contents 2)))
 
 
