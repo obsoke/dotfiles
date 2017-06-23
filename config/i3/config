@@ -154,6 +154,7 @@ assign [class="^Thunderbird$"] 10
 for_window [class="Lxappearance"] floating enable
 for_window [class="feh"] floating enable
 for_window [class="Steam"] floating enable
+for_window [class="Unity"] floating enable
 for_window [class="^Chromium$" window_role="^pop-up$"] floating enable
 
 

@@ -328,6 +328,8 @@ you should place your code here."
   ;; set javascript indent to 2 spaces
   (setq-default js2-basic-offset 2
                 js-indent-level 2)
+  ;; rust mode - format on save
+  (setq-default rust-format-on-save t)
 
 
   ;; spacemacs now uses org from MELPA; need to wait until this block runs until org code runs
