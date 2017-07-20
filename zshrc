@@ -27,7 +27,7 @@ SPACESHIP_PROMPT_ORDER=(
   #swift         # Swift section
   #golang        # Go section
   #docker        # Docker section
-  venv          # virtualenv section
+  #venv          # virtualenv section
   #pyenv         # Pyenv section
   line_sep      # Line break
   #vi_mode       # Vi-mode indicator

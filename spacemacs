@@ -48,18 +48,17 @@ values."
      syntax-checking
      version-control
      emacs-lisp
-     html
-     javascript
-     react
      python
      django
      rust
-     typescript
      markdown
      yaml
      lua
      scheme
+     shaders
      docker
+     deft
+     dash
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -68,6 +67,7 @@ values."
    dotspacemacs-additional-packages '(
                                       editorconfig
                                       gruvbox-theme
+                                      spaceline-all-the-icons
                                       )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -124,7 +124,7 @@ values."
    ;; directory. A string value must be a path to an image format supported
    ;; by your Emacs build.
    ;; If the value is nil then no banner is displayed. (default 'official)
-   dotspacemacs-startup-banner 'official
+   dotspacemacs-startup-banner 'random
    ;; List of items to show in startup buffer or an association list of
    ;; the form `(list-type . list-size)`. If nil then it is disabled.
    ;; Possible values for list-type are:
@@ -325,13 +325,21 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   ;; load theme
   (spacemacs/load-theme 'gruvbox)
-  ;; set javascript indent to 2 spaces
-  (setq-default js2-basic-offset 2
-                js-indent-level 2)
+  ;; enable editorconfig file support
+  (editorconfig-mode 1)
+  ;; spaceline-all-the-icons settings
+  (use-package spaceline-all-the-icons
+    :after spaceline
+    :config (spaceline-all-the-icons-theme))
+  (setq-default spaceline-all-the-icons-separator-type 'arrow)
   ;; rust mode - format on save
   (setq-default rust-format-on-save t)
-
-
+  ;; set Deft directory
+  (setq deft-directory "~/org/deft")
+  ;; set deft create file mode
+  (setq deft-use-filename-as-title nil)
+  (setq deft-use-filter-string-for-filename t)
+  (setq deft-org-mode-title-prefix t)
   ;; spacemacs now uses org from MELPA; need to wait until this block runs until org code runs
   ;; in order to not also accidently load emacs' built-in version of org
   (with-eval-after-load'org
@@ -353,9 +361,6 @@ you should place your code here."
            )
          )
    )
-
-  ;; enable editorconfig file support
-  (editorconfig-mode 1)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -365,11 +370,19 @@ you should place your code here."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ansi-color-names-vector
+   ["#0a0814" "#f2241f" "#67b11d" "#b1951d" "#4f97d7" "#a31db1" "#28def0" "#b2b2b2"])
+ '(deft-file-naming-rules
+    (quote
+     ((noslash . "_")
+      (nospace . "_")
+      (case-fn . downcase))))
  '(evil-want-Y-yank-to-eol nil)
  '(ledger-highlight-xact-under-point nil)
  '(package-selected-packages
    (quote
-    (pony-mode dash geiser ob-elixir yapfify yaml-mode ws-butler winum which-key wgrep web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package toml-mode toc-org tide typescript-mode tagedit spaceline powerline smex smeargle slim-mode scss-mode sass-mode restart-emacs request rainbow-mode rainbow-identifiers rainbow-delimiters racer pyvenv pytest pyenv-mode py-isort pug-mode popwin pip-requirements persp-mode pcre2el paradox spinner ox-twbs ox-gfm orgit org-projectile org-present org-pomodoro alert log4e gntp org-download org-bullets open-junk-file org-plus-contrib neotree move-text mmm-mode markdown-toc markdown-mode magit-gitflow macrostep lua-mode lorem-ipsum livid-mode skewer-mode simple-httpd live-py-mode linum-relative link-hint less-css-mode ledger-mode js2-refactor multiple-cursors js2-mode js-doc ivy-hydra info+ indent-guide hydra hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-make helm helm-core haml-mode google-translate golden-ratio gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md fuzzy flycheck-rust seq flycheck-pos-tip flycheck-mix flycheck-ledger flycheck-credo flycheck flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit magit git-commit with-editor evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight emmet-mode elisp-slime-nav editorconfig dumb-jump dockerfile-mode docker json-mode tablist magit-popup docker-tramp json-snatcher json-reformat diminish diff-hl define-word cython-mode counsel-projectile projectile counsel swiper ivy company-web web-completion-data company-tern dash-functional tern company-statistics company-quickhelp pos-tip company-anaconda column-enforce-mode color-identifiers-mode coffee-mode clean-aindent-mode cargo rust-mode bind-map bind-key auto-yasnippet yasnippet auto-highlight-symbol auto-compile packed async anaconda-mode pythonic f alchemist s company elixir-mode pkg-info epl aggressive-indent adaptive-wrap ace-window ace-link avy ac-ispell auto-complete popup))))
+    (glsl-mode company-glsl zeal-at-point counsel-dash helm-dash deft gruvbox-theme spaceline-all-the-icons all-the-icons memoize font-lock+ pony-mode dash geiser ob-elixir yapfify yaml-mode ws-butler winum which-key wgrep web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package toml-mode toc-org tide typescript-mode tagedit spaceline powerline smex smeargle slim-mode scss-mode sass-mode restart-emacs request rainbow-mode rainbow-identifiers rainbow-delimiters racer pyvenv pytest pyenv-mode py-isort pug-mode popwin pip-requirements persp-mode pcre2el paradox spinner ox-twbs ox-gfm orgit org-projectile org-present org-pomodoro alert log4e gntp org-download org-bullets open-junk-file org-plus-contrib neotree move-text mmm-mode markdown-toc markdown-mode magit-gitflow macrostep lua-mode lorem-ipsum livid-mode skewer-mode simple-httpd live-py-mode linum-relative link-hint less-css-mode ledger-mode js2-refactor multiple-cursors js2-mode js-doc ivy-hydra info+ indent-guide hydra hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-make helm helm-core haml-mode google-translate golden-ratio gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md fuzzy flycheck-rust seq flycheck-pos-tip flycheck-mix flycheck-ledger flycheck-credo flycheck flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit magit git-commit with-editor evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight emmet-mode elisp-slime-nav editorconfig dumb-jump dockerfile-mode docker json-mode tablist magit-popup docker-tramp json-snatcher json-reformat diminish diff-hl define-word cython-mode counsel-projectile projectile counsel swiper ivy company-web web-completion-data company-tern dash-functional tern company-statistics company-quickhelp pos-tip company-anaconda column-enforce-mode color-identifiers-mode coffee-mode clean-aindent-mode cargo rust-mode bind-map bind-key auto-yasnippet yasnippet auto-highlight-symbol auto-compile packed async anaconda-mode pythonic f alchemist s company elixir-mode pkg-info epl aggressive-indent adaptive-wrap ace-window ace-link avy ac-ispell auto-complete popup)))
+ '(spaceline-all-the-icons-separator-type (quote arrow)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
