@@ -47,11 +47,13 @@ alias ...='cd ../..'
 alias become-postgres='sudo -u postgres -i'
 alias npm-ls='npm ls -g --depth=0'
 alias docker-killimg='docker rmi $(docker images -a -q)'
+alias freespace='df -hH -t ext4'
 
 # load zsh syntax highlight plugin
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # load keychain
 eval $(keychain --eval --quiet --noask id_rsa)
 # setup & load virtualenvwrapper
-export WORKON_HOME=~/.venvs
-source /usr/bin/virtualenvwrapper.sh
+#export WORKON_HOME=~/.venvs
+#source /usr/bin/virtualenvwrapper.sh
+#(wal -r &)

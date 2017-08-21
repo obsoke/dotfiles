@@ -21,9 +21,7 @@ ln -sf ${BASEDIR}/zshenv $HOME/.zshenv
 ln -sf ${BASEDIR}/zprofile $HOME/.zprofile
 
 # Xorg
-ln -sf ${BASEDIR}/Xresources $HOME/.Xresources
 ln -sf ${BASEDIR}/Xmodmap $HOME/.Xmodmap
-ln -sf ${BASEDIR}/xinitrc $HOME/.xinitrc
 
 # others
 ln -sf ${BASEDIR}/fehbg $HOME/.fehbg

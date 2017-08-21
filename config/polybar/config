@@ -3,13 +3,10 @@
 ############
 
 [colors]
-background = #000
-background-alt = #000
-foreground = #fff
-foreground-alt = #55
-primary = #ffb52a
-secondary = #e60053
-alert = #bd2c40
+background = #00000000
+foreground = #ccffffff
+#background = ${xrdb:color2}
+#foreground = ${xrdb:color7}
 
 [global/wm]
 #margin-top = 5
@@ -21,29 +18,14 @@ alert = #bd2c40
 ##################
 
 [bar/main]
-;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
-offset-x = 0
-offset-y = 0
+height = 27
 
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-overline-size = 0
-overline-color = #f00
-underline-size = 2
-underline-color = #CA4A4B
-
-border-bottom-size = 3
-border-bottom-color = #CA4A4B 
-
-border-top-size = 0
-border-top-color = #CA4A4B 
-
-padding-left = 0
-padding-right = 0
-module-margin-left = 0
-module-margin-right = 5
+spacing = 2
+module-margin = 4
 
 
 ###########
@@ -115,11 +97,33 @@ label-mounted = fs: %free%
 [module/mpd]
 type = internal/mpd
 
-host = 127.0.0.1
-port = 6600
 ; Seconds to sleep between progressbar/song timer sync
 ; Default: 1
-interval = 2
+;interval = 2
+format-online = <icon-prev> <icon-stop> <toggle> <icon-next>  <icon-repeat> <icon-random>  <bar-progress> <label-time>  <label-song>
+
+icon-play = 
+icon-pause = 
+icon-stop = 
+icon-prev = 
+icon-next = 
+icon-random = 
+icon-repeat = 
+
+toggle-on-foreground =
+toggle-off-foreground = #55
+
+bar-progress-width = 45
+bar-progress-format = %{A4:mpdseek+2: A5:mpdseek-2:}%fill%%indicator%%empty%%{A A}
+bar-progress-indicator = |
+bar-progress-indicator-foreground = #ff
+bar-progress-indicator-font = 3
+bar-progress-fill = ─
+bar-progress-fill-foreground = #bb
+bar-progress-fill-font = 3
+bar-progress-empty = ─
+bar-progress-empty-font = 3
+bar-progress-empty-foreground = #44
 
 [module/cpu]
 type = internal/cpu
@@ -135,20 +139,16 @@ label = %percentage_used%%
 
 [module/date]
 type = internal/date
-interval = 1
-
-time = "%A %B %d"
-format =    <label>
-date = "%I:%M %p"
-;label = " %{A1:steam:}  %date% %time%  %{A}"
+date =    %%{F#99}%Y-%m-%d%%{F-}  %%{F#fff}%I:%M%%{F-}%p
 
 [module/volume]
 type = internal/volume
 
-format-volume = "   <label-volume>"
-label-muted = "   muted"
 mapping = true
-
+format-volume = <ramp-volume> <label-volume>
+label-muted =   muted
+label-muted-foreground = #66
+ramp-volume-0 = 
 
 [module/temperature]
 type = internal/temperature
@@ -156,7 +156,6 @@ type = internal/temperature
 thermal-zone = 0
 warn-temperature = 60
 label =    %temperature%
-label-warn-foreground = ${colors.secondary}
 
 [module/powermenu]
 type = custom/menu

@@ -3,8 +3,8 @@ export NPM_CONFIG_PREFIX=~/.node_modules
 export CARGO_HOME=~/.cargo
 
 # this is required to get ruby to install gems only in user gem folder
-export GEM_PATH=$(ls -t -U | ruby -e 'puts Gem.user_dir')
-export GEM_HOME=$GEM_PATH
+#export GEM_PATH=$(ls -t -U | ruby -e 'puts Gem.user_dir')
+#export GEM_HOME=$GEM_PATH
 
 # path
 path=("$GEM_PATH/bin" $path)

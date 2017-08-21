@@ -40,6 +40,18 @@ set $unfocused_client  #007399
 set $unfocused_text #007399
 set $unfocused_border #181818
 
+#set_from_resource $fg i3wm.color7 #181818
+#set_from_resource $bg i3wm.color2 #007399
+
+# class                   border     backgr.    text       indicator  child_border
+#client.focused            $bg        $bg        $fg        $bg        $bg
+#client.focused_inactive   $bg        $bg        $fg        $bg        $bg
+#client.unfocused          $bg        $bg        $fg        $bg        $bg
+#client.urgent             $bg        $bg        $fg        $bg        $bg
+#client.placeholder        $bg        $bg        $fg        $bg        $bg
+#
+#client.background         $bg
+
 client.focused            $focused_border    $focused_background    $focused_text           #282828           $focused_client
 client.unfocused          $unfocused_border  $unfocused_border      $unfocused_text         $darkblue         $unfocused_border
 client.placeholder        $unfocused_border  $unfocused_border      $unfocused_text         $darkblue         $unfocused_border
@@ -182,6 +194,16 @@ bindsym $mod+r mode "resize"
 
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
+exec --no-startup-id sh ~/.fehbg &
+exec --no-startup-id compton --config ~/.config/compton/compton.conf -b &
+exec --no-startup-id workrave &
+exec --no-startup-id redshift &
+exec --no-startup-id xcape
+exec --no-startup-id xmodmap $HOME/.Xmodmap
+
+exec --no-startup-id xset r rate 200 25
+exec --no-startup-id xset dpms 3600 3600 3600
+
 ###########
 # i3-Gaps #
 ###########
@@ -189,4 +211,4 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 smart_borders on
 
 new_window pixel 4
-gaps inner 10
+gaps inner 6
