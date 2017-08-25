@@ -3,10 +3,10 @@
 ############
 
 [colors]
-background = #00000000
-foreground = #ccffffff
-#background = ${xrdb:color2}
-#foreground = ${xrdb:color7}
+background = ${xrdb:color0:#00000000}
+background-alt = ${xrdb:color3:#00000000}
+foreground = ${xrdb:color15:#ccffffff}
+foreground-alt = ${xrdb:color2:#ccffffff}
 
 [global/wm]
 #margin-top = 5
@@ -71,7 +71,7 @@ label-focused-padding = 3
 label-unfocused = %index%
 label-unfocused-padding = 3
 label-urgent = %index%!
-label-urgent-foreground = ${colors.foreground}
+label-urgent-foreground = ${colors.foreground-alt}
 label-urgent-background = ${colors.background}
 label-urgent-padding = 4
 label-visible-foreground = ${colors.foreground}

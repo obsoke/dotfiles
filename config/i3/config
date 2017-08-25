@@ -1,7 +1,6 @@
 ###########
 # General #
 ###########
-
 set $mod Mod4
 font pango:Fira Sans 8
 
@@ -9,53 +8,24 @@ font pango:Fira Sans 8
 #############
 # Variables #
 #############
+set_from_resource $bg           i3wm.color2 #181818
+set_from_resource $bg-alt       i3wm.color0 #181818
+set_from_resource $fg           i3wm.color7 #b8b8b8
+set_from_resource $fg-alt       i3wm.color5 #b8b8b8
+set_from_resource $fg-alt-alt   i3wm.color9 #b8b8b8
 
-set $base00 #101218
-set $base01 #1f222d
-set $base02 #252936
-set $base03 #7780a1
-set $base04 #C0C5CE
-set $base05 #d1d4e0
-set $base06 #C9CCDB
-set $base07 #ffffff
-set $base08 #ee829f
-set $base09 #f99170
-set $base0A #ffefcc
-set $base0B #a5ffe1
-set $base0C #97e0ff
-set $base0D #97bbf7
-set $base0E #c0b7f9
-set $base0F #fcc09e
-set $border #f99157
-set $darkgrey  #1a1a1a
+# class                 border  backgr. text indicator      child_border
+client.focused          $fg-alt $bg     $fg  $fg-alt        $fg-alt-alt
+client.focused_inactive $bg     $bg-alt $fg  $bg            $bg
+client.unfocused        $bg     $bg-alt $fg  $bg                $bg
+client.urgent           $bg     $bg-alt $fg  $bg                $bg
+client.placeholder      $bg     $bg-alt $fg  $bg                $bg
 
-set $focused_client #b8b8b8
-set $focused_text #b8b8b8
-set $focused_background #282828
-set $focused_border $focused_client
-
-set $unfocused_text #007399
-set $unfocused_workspace #007399
-set $unfocused_client  #007399
-set $unfocused_text #007399
-set $unfocused_border #181818
-
-#set_from_resource $fg i3wm.color7 #181818
-#set_from_resource $bg i3wm.color2 #007399
-
-# class                   border     backgr.    text       indicator  child_border
-#client.focused            $bg        $bg        $fg        $bg        $bg
-#client.focused_inactive   $bg        $bg        $fg        $bg        $bg
-#client.unfocused          $bg        $bg        $fg        $bg        $bg
-#client.urgent             $bg        $bg        $fg        $bg        $bg
-#client.placeholder        $bg        $bg        $fg        $bg        $bg
-#
-#client.background         $bg
-
-client.focused            $focused_border    $focused_background    $focused_text           #282828           $focused_client
-client.unfocused          $unfocused_border  $unfocused_border      $unfocused_text         $darkblue         $unfocused_border
-client.placeholder        $unfocused_border  $unfocused_border      $unfocused_text         $darkblue         $unfocused_border
-client.urgent             $unfocused_border  $unfocused_border      $unfocused_text         $darkblue         $unfocused_border
+client.background       $bg
+#client.focused            $focused_border    $focused_background    $focused_text           #282828           $focused_client
+#client.unfocused          $unfocused_border  $unfocused_border      $unfocused_text         $darkblue         $unfocused_border
+#client.placeholder        $unfocused_border  $unfocused_border      $unfocused_text         $darkblue         $unfocused_border
+#client.urgent             $unfocused_border  $unfocused_border      $unfocused_text         $darkblue         $unfocused_border
 
 # Define movement keys
 set $up l
