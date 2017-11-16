@@ -15,3 +15,5 @@
 	showPatch = true
 [push]
 	followTags = true
+[magit]
+	hideCampaign = true

@@ -1,2 +1,2 @@
 #!/bin/sh
-feh  --image-bg black --bg-center '/home/dale/pictures/walls/ff7_comet.jpg' 
+'feh' '--bg-fill' '/home/dale/pictures/walls/sword_n_sworcery.jpg' 

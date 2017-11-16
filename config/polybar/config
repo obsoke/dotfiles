@@ -3,10 +3,17 @@
 ############
 
 [colors]
-background = ${xrdb:color0:#00000000}
-background-alt = ${xrdb:color3:#00000000}
-foreground = ${xrdb:color15:#ccffffff}
-foreground-alt = ${xrdb:color2:#ccffffff}
+;background = ${xrdb:color0:#00000000}
+;background-alt = ${xrdb:color3:#00000000}
+background = #222
+background-alt = #444
+;foreground = ${xrdb:color15:#ccffffff}
+;foreground-alt = ${xrdb:color2:#ccffffff}
+foreground = #dfdfdf
+foreground-alt = #555
+primary = #ffb52a
+secondary = #e60053
+alert = #bd2c40
 
 [global/wm]
 #margin-top = 5
@@ -19,13 +26,13 @@ foreground-alt = ${xrdb:color2:#ccffffff}
 
 [bar/main]
 width = 100%
-height = 27
+height = 30
 
 background = ${colors.background}
 foreground = ${colors.foreground}
 
 spacing = 2
-module-margin = 4
+module-margin = 6
 
 
 ###########
@@ -34,7 +41,8 @@ module-margin = 4
 
 font-0 = Fira Sans:size=10:weight=regular;2
 font-1 = FontAwesome:pixelsize=10.0;3
-font-2 = WunconSiji:pixelsize=10.0;2
+font-2 = Unifont:fontformat=truetype:size=8:antialias=false;2
+font-3 = "Wuncon Siji":pixelsize=10.0;2
 
 
 ######################
@@ -46,9 +54,10 @@ modules-center =
 modules-right = volume date
 
 tray-position = right
-tray-padding = 3
+tray-padding = 2
 tray-transparent = false
 tray-background = ${root.background}
+
 
 ######################
 ## Modules config   ##
@@ -64,82 +73,48 @@ label-mode-foreground = ${colors.foreground}
 label-mode-background = ${colors.background}
 label-mode-padding = 3
 label-focused = "%index%"
-label-focused-foreground = ${colors.background}
-label-focused-background = #CA4A4B
-label-focused-underline = 
+;label-focused-foreground = #FF0000
+label-focused-foreground = #8e98ff
+#label-focused-background = ${colors.background}
 label-focused-padding = 3
 label-unfocused = %index%
 label-unfocused-padding = 3
 label-urgent = %index%!
-label-urgent-foreground = ${colors.foreground-alt}
-label-urgent-background = ${colors.background}
-label-urgent-padding = 4
+label-urgent-foreground = ${colors.alert}
+;label-urgent-background = ${colors.background}
+label-empty-foreground = ${colors.foreground-alt}
+label-urgent-padding = 3
 label-visible-foreground = ${colors.foreground}
 label-visible-background = ${colors.background}
-label-visible-padding = 4
+label-visible-padding = 3
 
-[module/xwindow]
-type = internal/xwindow
-
-format-background = 
-format-foreground = #ffffff
-format-padding = 0
-label = "   %title%"
-label-maxlen = 50
-
-[module/filesystem]
-type = internal/fs
-interval = 25
-
-mount-0 = /
-label-mounted = fs: %free%
 
 [module/mpd]
 type = internal/mpd
 
-; Seconds to sleep between progressbar/song timer sync
-; Default: 1
-;interval = 2
-format-online = <icon-prev> <icon-stop> <toggle> <icon-next>  <icon-repeat> <icon-random>  <bar-progress> <label-time>  <label-song>
+interval = 2
 
-icon-play = 
-icon-pause = 
-icon-stop = 
-icon-prev = 
-icon-next = 
-icon-random = 
-icon-repeat = 
-
-toggle-on-foreground =
+toggle-on-foreground = #ff
 toggle-off-foreground = #55
 
+format-online = <icon-prev> <icon-seekb> <icon-stop> <toggle> <icon-seekf> <icon-next>  <icon-repeat> <icon-random>  <bar-progress> <label-time>  <label-song>
+label-song = 𝄞 %artist% - %title%
+label-offline = 🎜 mpd is offline
+icon-play = ⏵
+icon-pause = ⏸
+icon-stop = ⏹
+icon-prev = ⏮
+icon-next = ⏭
+icon-seekb = ⏪
+icon-seekf = ⏩
+icon-random = 🔀
+icon-repeat = 🔁
+icon-repeatone = 🔂
 bar-progress-width = 45
-bar-progress-format = %{A4:mpdseek+2: A5:mpdseek-2:}%fill%%indicator%%empty%%{A A}
 bar-progress-indicator = |
-bar-progress-indicator-foreground = #ff
-bar-progress-indicator-font = 3
 bar-progress-fill = ─
-bar-progress-fill-foreground = #bb
-bar-progress-fill-font = 3
 bar-progress-empty = ─
-bar-progress-empty-font = 3
-bar-progress-empty-foreground = #44
 
-[module/cpu]
-type = internal/cpu
-interval = 2
-
-label = %percentage%%
-
-[module/memory]
-type = internal/memory
-interval = 2
-
-label = %percentage_used%%
-
-[module/date]
-type = internal/date
-date =    %%{F#99}%Y-%m-%d%%{F-}  %%{F#fff}%I:%M%%{F-}%p
 
 [module/volume]
 type = internal/volume
@@ -150,32 +125,10 @@ label-muted =   muted
 label-muted-foreground = #66
 ramp-volume-0 = 
 
-[module/temperature]
-type = internal/temperature
 
-thermal-zone = 0
-warn-temperature = 60
-label =    %temperature%
-
-[module/powermenu]
-type = custom/menu
-
-label-open = %{O-2}%{O10}
-label-open-foreground = #e60053
-label-close = 
-label-close-foreground = #e60053
-label-separator = |
-label-separator-foreground = #55
-menu-0-0 = reboot
-menu-0-0-exec = systemctl reboot
-menu-0-1 = power off
-menu-0-1-exec = systemctl poweroff
-menu-0-2 = lock
-menu-0-2-exec = xscreensaver-command -lock
-menu-0-3 = log out
-menu-0-3-exec = i3-msg exit
-menu-0-4 = hibernate
-menu-0-4-exec = systemctl hibernate
+[module/date]
+type = internal/date
+date =    %%{F#99}%Y-%m-%d%%{F-}  %%{F#fff}%I:%M%%{F-}%p
 
 
 ; vim:ft=dosini

@@ -1,5 +1,6 @@
 ! rofi config
 rofi.color-enabled: true
+rofi.show-icons: true
 rofi.color-window: #101010, #101010, #101010
 rofi.color-normal: #101010, #616161, #101010, #101010, #4084d6
 rofi.color-active: #101010, #616161, #101010, #101010, #00ff00

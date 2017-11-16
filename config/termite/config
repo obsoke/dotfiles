@@ -1,13 +1,11 @@
 [options]
-font = Source Code Pro for Powerline 9
+font = Ubuntu Mono 10
 cursor_blink = off
 browser = chromium
 
 [colors]
 background= #101010
 foreground= #d0d0d0
-#foreground= #66ff66
-#highlight = #505050
 cursor = #66ff66
 color0= #101010
 color1= #960050
