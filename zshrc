@@ -58,3 +58,9 @@ eval $(keychain --eval --quiet --noask id_rsa)
 #export WORKON_HOME=~/.venvs
 #source /usr/bin/virtualenvwrapper.sh
 #(wal -r &)
+# z
+. /usr/lib/z.sh
+
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
