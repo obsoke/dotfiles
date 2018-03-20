@@ -97,6 +97,9 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 # Take a screenshot with a 1-second delay
 bindsym Print exec "scrot -d 1"
 
+# Lock
+bindsym $mod+Shift+p exec "i3lock-fancy"
+
 
 ##############
 # Workspaces #
@@ -172,6 +175,7 @@ exec --no-startup-id redshift &
 exec --no-startup-id xss-lock -- i3lock-fancy 
 exec --no-startup-id xcape
 exec --no-startup-id xmodmap $HOME/.Xmodmap
+exec --no-startup-id dropbox
 
 exec --no-startup-id xset r rate 200 25
 exec --no-startup-id xset dpms 3600 3600 3600
