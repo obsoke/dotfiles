@@ -1,7 +1,7 @@
 [options]
 font = Ubuntu Mono 10
 cursor_blink = off
-browser = chromium
+browser = firefox
 
 [colors]
 background= #101010
