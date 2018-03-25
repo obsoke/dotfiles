@@ -42,7 +42,7 @@ set $right semicolon
 bindsym $mod+Return exec i3-sensible-terminal
 
 # Start Rofi
-bindsym $mod+d exec --no-startup-id rofi -show drun
+bindsym $mod+d exec --no-startup-id zsh -c "rofi -show drun"
 
 # Kill focused window
 bindsym $mod+Shift+q kill

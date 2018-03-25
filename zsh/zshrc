@@ -37,9 +37,9 @@ setopt promptsubst
 source /home/dale/repos/spaceship-zsh-theme/spaceship.zsh-theme
 
 # aliases
-alias l='ls -lh --color=auto'
-alias ls='ls --color=auto'
-alias la='ls -lha --color=auto'
+alias l='exa -l'
+alias ls='exa'
+alias la='exa -la'
 alias vi='vim'
 alias v='vim'
 alias g='git'
