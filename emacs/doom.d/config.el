@@ -9,7 +9,7 @@
   "ediff the current `dotfile' with the template"
   (interactive)
   (ediff-files
-   "~/.emacs.d/init.el"
+   "~/.doom.d/init.el"
    "~/.emacs.d/init.example.el"))
 
 ;;
