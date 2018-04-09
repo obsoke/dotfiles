@@ -1,4 +1,5 @@
-;;; init.example.el -*- lexical-binding: t; -*-
+;;; init.el -*- lexical-binding: t; -*-
+;; Copy me to ~/.doom.d/init.el or ~/.config/doom/init.el, then edit me!
 
 (doom! :feature
        (popup            ; tame sudden yet inevitable temporary windows
@@ -62,8 +63,9 @@
        cc                ; C/C++/Obj-C madness
       ;crystal           ; ruby at the speed of c
        clojure           ; java with a lisp
-       csharp            ; unity, .NET, and mono shenanigans
+      ;csharp            ; unity, .NET, and mono shenanigans
        data              ; config/data formats
+      ;erlang            ; an elegant language for a more civilized age
       ;elixir            ; erlang done right
       ;elm               ; care for a cup of TEA?
        emacs-lisp        ; drown in parentheses

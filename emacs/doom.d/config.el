@@ -18,6 +18,7 @@
 (def-package! prettier-js)
 (def-package! deft)
 (def-package! anki-editor)
+(def-package! ox-hugo)
 
 (add-hook 'web-mode-hook 'prettier-js-mode)
 (add-hook 'js2-mode-hook 'prettier-js-mode)
@@ -85,7 +86,6 @@
 ;;
 (map!
  (:leader
-   :desc "toggle last buffer"     :nv "TAB" #'evil-switch-to-windows-last-buffer
    :desc "Diff dotfiles"          :nv "d" #'obsoke/ediff-dotfile-and-template
    (:desc "file" :prefix "f"
      :desc "Find File"            :n "f" #'counsel-find-file
@@ -95,7 +95,6 @@
    (:desc "window" :prefix "w"
      :desc "close window"         :n "d" #'+workspace/close-window-or-workspace
      :desc "split vert"           :n "-" #'split-window-vertically
-     :desc "max-buffer"           :n "m" #'tees/max-buffer
      :desc "split horiz"          :n "/" #'split-window-horizontally)
    (:desc "git" :prefix "g"
      :desc "Git status"           :n  "s" #'magit-status
