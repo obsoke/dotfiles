@@ -4,7 +4,7 @@
 ;; define helper functions
 ;;
 
-;; taken from spacemacs & adjusted
+;; taken from spacemacs & adjusted for my own needs
 (defun obsoke/ediff-dotfile-and-template ()
   "ediff the current `dotfile' with the template"
   (interactive)
@@ -15,15 +15,21 @@
 ;;
 ;; package config
 ;;
-(def-package! prettier-js)
-(def-package! deft)
+(def-package! prettier-js
+  :init (setq-default prettier-js-command "/home/dale/.node_modules/bin/prettier"
+                      prettier-js-args '("--single-quote"))
+  :hook ((web-mode . prettier-js-mode)
+         (js2-mode . prettier-js-mode)
+         (typescript-mode . prettier-js-mode)
+         (tide-mode . prettier-js-mode)))
+(def-package! deft
+  :init (setq-default deft-directory "~/documents/Dropbox/Apps/Orgzly"
+                      deft-extensions '("org")
+                      deft-use-filename-as-title nil
+                      deft-use-filter-string-for-filename t
+                      deft-org-mode-title-prefix t))
 (def-package! anki-editor)
 (def-package! ox-hugo)
-
-(add-hook 'web-mode-hook 'prettier-js-mode)
-(add-hook 'js2-mode-hook 'prettier-js-mode)
-(add-hook 'typescript-mode-hook 'prettier-js-mode)
-(add-hook 'tide-mode-hook 'prettier-js-mode)
 
 ;; magit - window split should be horizontal, not vertical
 ;; taken from https://github.com/hlissner/doom-emacs/issues/475
@@ -32,7 +38,7 @@
 (set! :popup "^.*magit-revision:.*" '((slot . 2) (side . right) (window-height . 0.6)) '((select . t)))
 (set! :popup "^.*magit-diff:.*" '((slot . 2) (side . right) (window-height . 0.6)) '((select)))
 
-;; activate company mode
+;; activate company mode globally
 (require 'company)
 
 ;;
@@ -62,24 +68,10 @@
 
  ;; rust
  rust-format-on-save t
- rust-rustfmt-bin "/home/dale/.cargo/bin/rustfmt"
+ rust-rustfmt-bin "/usr/bin/rustfmt"
 
  ;; org
- org-directory "~/org"
-
- ;; prettier
- prettier-js-command "/home/dale/.node_modules/bin/prettier"
- prettier-js-args '(
-                    "--single-quote"
-                    )
-
- ;; deft
- deft-directory "~/documents/Dropbox/Apps/Orgzly"
- deft-use-filename-as-title nil
- deft-use-filter-string-for-filename t
- deft-org-mode-title-prefix t
- )
-
+ org-directory "~/org")
 
 ;;
 ;; key bindings
