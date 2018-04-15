@@ -30,6 +30,25 @@
                       deft-org-mode-title-prefix t))
 (def-package! anki-editor)
 (def-package! ox-hugo)
+;; requires npm i -g javascript-typescript-langserver
+(def-package! lsp-mode)
+(def-package! lsp-ui
+  :after lsp-mode
+  :hook ((lsp-mode . lsp-ui-mode)))
+(def-package! company-lsp
+  :after lsp-mode
+  :config
+  (push 'company-lsp company-backends))
+(def-package! lsp-javascript-typescript
+  :after lsp-mode
+  :hook ((web-mode . lsp-javascript-typescript-enable)
+         (js-mode . lsp-javascript-typescript-enable)
+         (rjsx-mode . lsp-javascript-typescript-enable)
+         (typescript-mode . lsp-javascript-typescript-enable)))
+(def-package! lsp-rust
+  :after lsp-mode
+  :config (setq-default lsp-rust-rls-command '("rustup" "run" "nightly" "rls"))
+  :hook ((rust-mode . lsp-rust-enable)))
 
 ;; magit - window split should be horizontal, not vertical
 ;; taken from https://github.com/hlissner/doom-emacs/issues/475
