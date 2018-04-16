@@ -27,6 +27,9 @@
                       deft-extensions '("org")
                       deft-use-filename-as-title nil
                       deft-use-filter-string-for-filename t
+                      deft-file-naming-rules '((noslash . "-")
+                                               (nospace . "_")
+                                               (case-fn . downcase))
                       deft-org-mode-title-prefix t))
 (def-package! anki-editor)
 (def-package! ox-hugo)
