@@ -94,8 +94,8 @@ bindsym $mod+Shift+r restart
 # Exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
-# Take a screenshot with a 1-second delay
-bindsym Print exec "scrot -d 1"
+# Take a screenshot with flameshot
+bindsym Print exec "flameshot gui"
 
 # Lock
 bindsym $mod+Shift+p exec "i3lock-fancy"
