@@ -50,8 +50,13 @@
          (typescript-mode . lsp-javascript-typescript-enable)))
 (def-package! lsp-rust
   :after lsp-mode
-  :config (setq-default lsp-rust-rls-command '("rustup" "run" "nightly" "rls"))
+  :config (setq-default
+           lsp-rust-rls-command '("rustup" "run" "nightly" "rls")
+           )
   :hook ((rust-mode . lsp-rust-enable)))
+
+(after! lsp-rust
+  (lsp-rust-set-config "clippy-preference" "on"))
 
 ;; magit - window split should be horizontal, not vertical
 ;; taken from https://github.com/hlissner/doom-emacs/issues/475

@@ -3,13 +3,22 @@
 ############
 
 [colors]
-background = ${xrdb:color0:#222}
-#background-alt = ${xrdb:color3:#444}
-foreground = ${xrdb:color7:#dfdfdf}
-foreground-alt = ${xrdb:color7:#555}
-primary = ${xrdb:color1:#ffb52a}
-secondary = ${xrdb:color2:#e60053}
-alert = ${xrdb:color3:#bd2c40}
+background = ${xrdb:color0:#212121}
+background-alt = ${xrdb:color3:#373b41}
+foreground = ${xrdb:color7:#c5c8c6}
+foreground-alt = ${xrdb:color7:#707880}
+
+red = #cc6666
+orange = #de935f
+green = #8fcc85
+yellow = #f0c674
+blue = #8fadcc
+purple = #b294bb
+cyan = #8abeb7
+
+primary = ${colors.blue}
+secondary = ${xrdb:color2:#59798f}
+alert = ${colors.red}
 
 [global/wm]
 #margin-top = 5
@@ -22,14 +31,19 @@ alert = ${xrdb:color3:#bd2c40}
 
 [bar/main]
 width = 100%
-height = 24
+height = 32
 
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-spacing = 1
-module-margin-left = 2
-module-margin-right = 2
+line-size = 3
+line-color = ${colors.primary}
+
+spacing = 0
+padding = 2
+
+module-margin-left = 1
+module-margin-right = 1
 
 
 ###########
@@ -63,24 +77,26 @@ tray-background = ${root.background}
 [module/i3]
 type = internal/i3
 
-format = <label-state>
 index-sort = true
-label-mode = "%mode%"
-label-mode-foreground = ${colors.foreground}
-label-mode-background = ${colors.background}
-label-mode-padding = 3
-label-focused = "%index%"
-label-focused-foreground = #8e98ff
-label-focused-padding = 3
-label-unfocused = %index%
-label-unfocused-padding = 3
-label-urgent = %index%!
+
+label-focused = %name%
+label-focused-foreground = ${colors.primary}
+label-focused-underline= ${colors.primary}
+label-focused-padding = 5
+label-unfocused-padding = 5
+
+label-occupied = %name%
+label-occupied-padding = 5
+
+label-urgent = %name%
 label-urgent-foreground = ${colors.alert}
+label-urgent-padding = 5
+label-urgent-overline = ${colors.alert}
+label-urgent-underline = ${colors.alert}
+
+label-empty = %name%
 label-empty-foreground = ${colors.foreground-alt}
-label-urgent-padding = 3
-label-visible-foreground = ${colors.foreground}
-label-visible-background = ${colors.background}
-label-visible-padding = 3
+label-empty-padding = 5
 
 
 [module/mpd]
@@ -112,10 +128,8 @@ bar-progress-empty = ─
 
 [module/xwindow]
 type = internal/xwindow
-label = %title:0:40:...%
-module-margin-left = 2
-format-padding = 2
-#format-background = ${colors.bg}
+label = %title:0:80:...%
+label-foreground = ${colors.foreground}
 
 
 [module/volume]
@@ -123,7 +137,7 @@ type = internal/volume
 
 mapping = true
 format-volume = <ramp-volume> <label-volume>
-label-muted =   muted
+label-muted = 
 label-muted-foreground = #66
 ramp-volume-0 = 
 
