@@ -37,9 +37,9 @@ setopt promptsubst
 source /home/dale/repos/spaceship-zsh-theme/spaceship.zsh-theme
 
 # aliases
-alias l='exa -l'
-alias ls='exa'
-alias la='exa -la'
+alias l='exa -l --group-directories-first'
+alias ls='exa --group-directories-first'
+alias la='exa -la --group-directories-first'
 alias vi='vim'
 alias v='vim'
 alias g='git'
