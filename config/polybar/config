@@ -3,10 +3,10 @@
 ############
 
 [colors]
-background = ${xrdb:color0:#212121}
-background-alt = ${xrdb:color3:#373b41}
-foreground = ${xrdb:color7:#c5c8c6}
-foreground-alt = ${xrdb:color7:#707880}
+background = ${xrdb:color0:#111}
+background-alt = ${xrdb:color3:#444}
+foreground = ${xrdb:color7:#dfdfdf}
+foreground-alt = ${xrdb:color7:#555}
 
 red = #cc6666
 orange = #de935f
@@ -16,13 +16,16 @@ blue = #8fadcc
 purple = #b294bb
 cyan = #8abeb7
 
-primary = ${colors.blue}
-secondary = ${xrdb:color2:#59798f}
-alert = ${colors.red}
+#primary = ${colors.blue}
+#secondary = ${xrdb:color2:#59798f}
+#alert = ${colors.red}
+primary = #ffb52a
+secondary = #e60053
+alert = #bd2c40
 
 [global/wm]
-#margin-top = 5
-#margin-bottom = 5
+margin-top = 5
+margin-bottom = 5
 
 
 ##################
@@ -37,23 +40,29 @@ background = ${colors.background}
 foreground = ${colors.foreground}
 
 line-size = 3
-line-color = ${colors.primary}
+line-color = #f00
+
+border-size = 0
+border-color = #00000000
+
+padding-left = 1
+padding-right = 4
 
 spacing = 0
 padding = 2
 
 module-margin-left = 1
-module-margin-right = 1
-
+module-margin-right = 4
 
 ###########
 ## Fonts ##
 ###########
 
 font-0 = Fira Sans:size=10:weight=regular;2
-font-1 = FontAwesome:pixelsize=10.0;3
-font-2 = Unifont:fontformat=truetype:size=8:antialias=false;2
-font-3 = Wuncon Siji:pixelsize=10.0;2
+font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-2 = Wuncon Siji:pixelsize=7;1
+font-3 = Font Awesome 5 Free:style=Regular:pixelsize=12;2
+font-4 = Font Awesome 5 Free:style=Solid:pixelsize=12;2
 
 
 ######################
@@ -62,12 +71,12 @@ font-3 = Wuncon Siji:pixelsize=10.0;2
 
 modules-left = i3 mpd
 modules-center = xwindow
-modules-right = volume date
+modules-right = filesystem volume date
 
 tray-position = right
 tray-padding = 2
-tray-transparent = false
-tray-background = ${root.background}
+#tray-transparent = false
+#tray-background = ${root.background}
 
 
 ######################
@@ -97,6 +106,18 @@ label-urgent-underline = ${colors.alert}
 label-empty = %name%
 label-empty-foreground = ${colors.foreground-alt}
 label-empty-padding = 5
+
+[module/filesystem]
+type = internal/fs
+interval = 25
+
+mount-0 = /
+mount-1 = /home
+
+label-mounted = %{F#6699cc}%{T2} %{T-}%{F-}%percentage_used%%
+;label-mounted-underline = #2AA35C
+label-unmounted = %mountpoint% not mounted
+label-unmounted-foreground = ${colors.foreground-alt}
 
 
 [module/mpd]
@@ -133,18 +154,40 @@ label-foreground = ${colors.foreground}
 
 
 [module/volume]
-type = internal/volume
+type = internal/pulseaudio
+format-volume = <label-volume> 
+label-volume = %{F#ffcc66}%{T2}%{T-}%{F-} %percentage%%
+label-volume-foreground = ${root.foreground}
 
-mapping = true
-format-volume = <ramp-volume> <label-volume>
-label-muted = 
+label-muted = %{T2}%{T-} muted
 label-muted-foreground = #66
-ramp-volume-0 = 
+
+bar-volume-width = 10
+bar-volume-foreground-0 = #55aa55
+bar-volume-foreground-1 = #55aa55
+bar-volume-foreground-2 = #55aa55
+bar-volume-foreground-3 = #55aa55
+bar-volume-foreground-4 = #55aa55
+bar-volume-foreground-5 = #f5a70a
+bar-volume-foreground-6 = #ff5555
+bar-volume-gradient = false
+bar-volume-indicator = -
+bar-volume-indicator-font = 2
+bar-volume-fill = --
+bar-volume-fill-font = 2
+bar-volume-empty = --
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.foreground-alt}ype = internal/pulseaudio
 
 
 [module/date]
 type = internal/date
-date =    %%{F#99}%Y-%m-%d%%{F-}  %%{F#fff}%I:%M%%{F-}%p
-
+format-prefix = 
+date =
+date-alt = " %Y-%b-%d"
+time = %I:%M
+time-alt = %H:%M:%S
+format-prefix-foreground = #66cccc 
+label = %date% %time%
 
 ; vim:ft=dosini
