@@ -16,7 +16,7 @@
 ;; package config
 ;;
 (def-package! prettier-js
-  :init (setq-default prettier-js-command "/home/dale/.node_modules/bin/prettier"
+  :init (setq-default prettier-js-command "/usr/bin/prettier"
                       prettier-js-args '("--single-quote"))
   :hook ((web-mode . prettier-js-mode)
          (js2-mode . prettier-js-mode)
@@ -55,19 +55,6 @@
            )
   :hook ((rust-mode . lsp-rust-enable)))
 
-(after! lsp-rust
-  (lsp-rust-set-config "clippy-preference" "on"))
-
-;; magit - window split should be horizontal, not vertical
-;; taken from https://github.com/hlissner/doom-emacs/issues/475
-(set! :popup "^.*magit" '((slot . -1) (side . right) (size . 80)) '((select . t)))
-(set! :popup "^\\*magit.*popup\\*" '((slot . 0) (side . right)) '((select . t)))
-(set! :popup "^.*magit-revision:.*" '((slot . 2) (side . right) (window-height . 0.6)) '((select . t)))
-(set! :popup "^.*magit-diff:.*" '((slot . 2) (side . right) (window-height . 0.6)) '((select)))
-
-;; activate company mode globally
-(require 'company)
-
 ;;
 ;; setting defaults
 ;;
@@ -91,7 +78,7 @@
  which-key-idle-delay 0.25
 
  ;; typescript
- tide-tsserver-executable "/home/dale/.node_modules/bin/tsserver"
+ tide-tsserver-executable "/usr/bin/tsserver"
 
  ;; rust
  rust-format-on-save t
@@ -137,7 +124,7 @@
    (:desc "anki" :prefix "a"
      :desc "Insert new deck"           :n "d" #'anki-editor-insert-deck
      :desc "Insert new note"           :n "n" #'anki-editor-insert-note
-     :desc "Submit buffer to Anki"     :n "s" #'anki-editor-submit
+     :desc "Submit buffer to Anki"     :n "s" #'anki-editor-push-notes
      )
    )
  )
