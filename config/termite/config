@@ -1,5 +1,5 @@
 [options]
-font = Ubuntu Mono 10
+font = Ubuntu Mono 12
 cursor_blink = off
 browser = firefox
 

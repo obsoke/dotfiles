@@ -1,2 +1,2 @@
 #!/bin/sh
-feh --bg-fill '/home/dale/pictures/walls/hexagons.png' 
+feh --no-fehbg --bg-fill '/home/dale/pictures/walls/star_fox_animals.jpg' 

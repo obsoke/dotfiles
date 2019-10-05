@@ -13,24 +13,10 @@ setopt COMPLETE_ALIASES
 source /home/dale/.dotfiles/zsh/git.zsh
 
 # prompt
-SPACESHIP_TIME_SHOW=true
-SPACESHIP_TIME_12HR=true
 SPACESHIP_PROMPT_ORDER=(
-  time          # Time stampts section
-  user          # Username section
-  host          # Hostname section
   dir           # Current directory section
   git           # Git section (git_branch + git_status)
-  #node          # Node.js section
-  #ruby          # Ruby section
-  #xcode         # Xcode section
-  #swift         # Swift section
-  #golang        # Go section
-  #docker        # Docker section
-  #venv          # virtualenv section
-  #pyenv         # Pyenv section
   line_sep      # Line break
-  #vi_mode       # Vi-mode indicator
   char          # Prompt character
 )
 setopt promptsubst
@@ -40,6 +26,7 @@ source /home/dale/repos/spaceship-zsh-theme/spaceship.zsh-theme
 alias l='exa -l --group-directories-first'
 alias ls='exa --group-directories-first'
 alias la='exa -la --group-directories-first'
+alias cat='bat'
 alias vi='vim'
 alias v='vim'
 alias g='git'
@@ -54,13 +41,5 @@ alias freespace='df -hH -t ext4'
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # load keychain
 eval $(keychain --eval --quiet --noask id_rsa)
-# setup & load virtualenvwrapper
-#export WORKON_HOME=~/.venvs
-#source /usr/bin/virtualenvwrapper.sh
-#(wal -r &)
-# z
-. /usr/lib/z.sh
-
-
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"

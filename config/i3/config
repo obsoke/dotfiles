@@ -39,7 +39,7 @@ set $right semicolon
 ################
 
 # Start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec alacritty
 
 # Start Rofi
 bindsym $mod+d exec --no-startup-id zsh -c "rofi -show drun"
@@ -169,6 +169,7 @@ bindsym $mod+r mode "resize"
 
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
+exec --no-startup-id xrandr --output HDMI-0 --mode 3840x2160 --primary --dpi 144 --output DVI-I-1 --auto -o left --left-of HDMI-0
 exec --no-startup-id sh ~/.fehbg &
 exec --no-startup-id compton --config ~/.config/compton/compton.conf -b &
 exec --no-startup-id workrave &

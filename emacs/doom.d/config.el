@@ -33,27 +33,18 @@
                       deft-org-mode-title-prefix t))
 (def-package! anki-editor)
 (def-package! ox-hugo)
-;; requires npm i -g javascript-typescript-langserver
-(def-package! lsp-mode)
-(def-package! lsp-ui
-  :after lsp-mode
-  :hook ((lsp-mode . lsp-ui-mode)))
-(def-package! company-lsp
-  :after lsp-mode
+(def-package! org-super-agenda
+  :after org-agenda
   :config
-  (push 'company-lsp company-backends))
-(def-package! lsp-javascript-typescript
-  :after lsp-mode
-  :hook ((web-mode . lsp-javascript-typescript-enable)
-         (js-mode . lsp-javascript-typescript-enable)
-         (rjsx-mode . lsp-javascript-typescript-enable)
-         (typescript-mode . lsp-javascript-typescript-enable)))
-(def-package! lsp-rust
-  :after lsp-mode
-  :config (setq-default
-           lsp-rust-rls-command '("rustup" "run" "nightly" "rls")
-           )
-  :hook ((rust-mode . lsp-rust-enable)))
+  (org-super-agenda-mode))
+
+;; org mode fix for making line wrapping work the way i want
+;; TODO: don't be uggo
+(remove-hook 'org-mode-hook #'auto-fill-mode)
+(add-hook 'org-mode-hook #'visual-line-mode)
+;; allow new bullets to be auto-created within lists when hitting 'o'/'O' in normal mode
+(add-to-list 'evil-org-special-o/O 'item)
+
 
 ;;
 ;; setting defaults
@@ -85,7 +76,9 @@
  rust-rustfmt-bin "/usr/bin/rustfmt"
 
  ;; org
- org-directory "~/org")
+ org-directory "~/org"
+ org-agenda-files (list "/home/dale/documents/Dropbox/Apps/Orgzly/")
+ )
 
 ;;
 ;; key bindings
