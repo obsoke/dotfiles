@@ -28,4 +28,3 @@ ln -sf ${BASEDIR}/xorg/Xresources $HOME/.Xresources
 # others
 ln -sf ${BASEDIR}/misc/fehbg $HOME/.fehbg
 ln -sf ${BASEDIR}/misc/gitconfig $HOME/.gitconfig
-ln -sf ${BASEDIR}/misc/tern-project $HOME/.tern-project
