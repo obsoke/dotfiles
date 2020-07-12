@@ -6,6 +6,7 @@
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # .config folder
+ln -sf ${BASEDIR}/config/alacritty $HOME/.config/
 ln -sf ${BASEDIR}/config/picom $HOME/.config/
 ln -sf ${BASEDIR}/config/i3 $HOME/.config/
 ln -sf ${BASEDIR}/config/polybar $HOME/.config/
@@ -13,8 +14,8 @@ ln -sf ${BASEDIR}/config/termite $HOME/.config/
 ln -sf ${BASEDIR}/config/user-dirs.dirs $HOME/.config/
 
 # doom-emacs
-ln -sf ${BASEDIR}/emacs/init.el $HOME/.emacs.d/
-ln -sf ${BASEDIR}/emacs/doom.d $HOME/.doom.d
+#ln -sf ${BASEDIR}/emacs/init.el $HOME/.emacs.d/
+#ln -sf ${BASEDIR}/emacs/doom.d $HOME/.doom.d
 
 # zsh
 ln -sf ${BASEDIR}/zsh/zshrc $HOME/.zshrc
