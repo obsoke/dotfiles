@@ -6,10 +6,11 @@
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # .config folder
-ln -sf ${BASEDIR}/config/compton/ $HOME/.config/
+ln -sf ${BASEDIR}/config/picom $HOME/.config/
 ln -sf ${BASEDIR}/config/i3 $HOME/.config/
 ln -sf ${BASEDIR}/config/polybar $HOME/.config/
 ln -sf ${BASEDIR}/config/termite $HOME/.config/
+ln -sf ${BASEDIR}/config/user-dirs.dirs $HOME/.config/
 
 # doom-emacs
 ln -sf ${BASEDIR}/emacs/init.el $HOME/.emacs.d/
@@ -28,10 +29,3 @@ ln -sf ${BASEDIR}/xorg/Xresources $HOME/.Xresources
 ln -sf ${BASEDIR}/misc/fehbg $HOME/.fehbg
 ln -sf ${BASEDIR}/misc/gitconfig $HOME/.gitconfig
 ln -sf ${BASEDIR}/misc/tern-project $HOME/.tern-project
-
-
-###
-### DEPRECATED STUFF
-###
-# spacemacs
-# ln -sf ${BASEDIR}/spacemacs $HOME/.spacemacs

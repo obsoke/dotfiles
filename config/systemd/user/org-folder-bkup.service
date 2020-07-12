@@ -1,5 +1,0 @@
-[Unit]
-Description=Backup Org notes by running Git commit & push.
-
-[Service]
-ExecStart=/home/dale/.dotfiles/bin/org-folder-bkup.sh

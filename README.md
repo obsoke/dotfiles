@@ -1,4 +1,9 @@
-# Dotfiles v5
+# Dotfiles v6
+
+There are two branches that are used on two different machines:
+
+- _master_ is used on an older desktop machine running Arch Linux + X11
+- _work_ is used on my work laptop running Arch Linux + Wayland
 
 ## Install
 
