@@ -17,15 +17,6 @@ compinit
 zstyle ':completion:*' menu select
 setopt COMPLETE_ALIASES
 
-source /home/dale/.dotfiles/zsh/git.zsh
-
-# prompt
-SPACESHIP_PROMPT_ORDER=(
-  dir           # Current directory section
-  git           # Git section (git_branch + git_status)
-  line_sep      # Line break
-  char          # Prompt character
-)
 setopt promptsubst
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
