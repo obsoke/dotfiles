@@ -171,7 +171,7 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 exec --no-startup-id xrandr --output HDMI-0 --mode 3840x2160 --primary --dpi 144 --output DVI-I-1 --auto -o left --left-of HDMI-0
 exec --no-startup-id sh ~/.fehbg &
-exec --no-startup-id compton --config ~/.config/compton/compton.conf -b &
+exec --no-startup-id picom --config ~/.config/picom/picom.conf -b &
 exec --no-startup-id workrave &
 exec --no-startup-id redshift &
 exec --no-startup-id xss-lock -- i3lock-fancy 
