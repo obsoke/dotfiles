@@ -21,6 +21,7 @@ ln -sf ${BASEDIR}/config/user-dirs.dirs $HOME/.config/
 ln -sf ${BASEDIR}/zsh/zshrc $HOME/.zshrc
 ln -sf ${BASEDIR}/zsh/zshenv $HOME/.zshenv
 ln -sf ${BASEDIR}/zsh/zprofile $HOME/.zprofile
+ln -sf ${BASEDIR}/zsh/p10k.zsh $HOME/.p10k.zsh
 
 # Xorg
 ln -sf ${BASEDIR}/xorg/Xmodmap $HOME/.Xmodmap
