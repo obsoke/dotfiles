@@ -1,5 +1,5 @@
 [user]
-	email = dale@dale.io
+	email = dale.karp@nielsen.com
 	name = Dale Karp
 
 [alias]
@@ -15,5 +15,12 @@
 	showPatch = true
 [push]
 	followTags = true
-[magit]
-	hideCampaign = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[gitlab]
+	user = dale.karp
+[pull]
+	rebase = false
