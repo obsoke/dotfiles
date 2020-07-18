@@ -1,73 +1,149 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
-;; Place your private configuration here! Remember, you do not need to run 'doom
-;; sync' after modifying this file!
+(setq user-full-name "Dale Karp"
+      user-mail-address "obsoke@obsoke.com")
 
-;; taken from spacemacs & adjusted for my own needs
+;; appearance
+(setq doom-font (font-spec :family "monospace" :size 20))
+(setq doom-theme 'doom-dracula)
+(setq display-line-numbers-type t)
+
+;; general config
+(setq-default
+ ;; company
+ company-idle-delay 0.2
+ company-minimum-prefix-length 2
+
+ ;; Reduce the delay time for when SPC (which-key) brings up list of keys
+ which-key-idle-delay 0.25)
+(setq org-directory "~/documents/Dropbox/Apps/Orgzly")
+(setq org-agenda-skip-scheduled-if-done t
+      org-agenda-skip-deadline-if-done t
+      org-agenda-include-deadlines t
+      org-agenda-block-separator nil
+      org-agenda-tags-column 100 ;; from testing this seems to be a good value
+      org-agenda-compact-blocks t)
+(setq org-capture-templates
+      `(("i" "inbox" entry (file ,(concat org-directory "/" "inbox.org"))
+         "* TODO %?")
+        ))
+(setq org-agenda-custom-commands
+      '(("o" "Overview"
+         ((agenda "" ((org-agenda-span 'day)
+                      (org-super-agenda-groups
+                       '((:name "Today"
+                          :time-grid t
+                          :date today
+                          :todo "TODAY"
+                          :scheduled today
+                          :order 1)))))
+          (alltodo "" ((org-agenda-overriding-header "")
+                       (org-super-agenda-groups
+                        '((:name "Next to do"
+                           :todo "NEXT"
+                           :order 1)
+                          (:name "Important"
+                           :tag "Important"
+                           :priority "A"
+                           :order 6)
+                          (:name "Due Today"
+                           :deadline today
+                           :order 2)
+                          (:name "Due Soon"
+                           :deadline future
+                           :order 8)
+                          (:name "Overdue"
+                           :deadline past
+                           :face error
+                           :order 7)
+                          (:name "Emacs"
+                           :tag "Emacs"
+                           :order 13)
+                          (:name "Projects"
+                           :tag "Project"
+                           :order 14)
+                          (:name "To read"
+                           :tag "Read"
+                           :order 30)
+                          (:name "Waiting"
+                           :todo "WAITING"
+                           :order 20)
+                          (:name "Trivial"
+                           :priority<= "E"
+                           :tag ("Trivial" "Unimportant")
+                           :todo ("SOMEDAY" )
+                           :order 90)
+                          (:discard (:tag ("Chore" "Routine" "Daily")))))))))))
+;; stolen from https://github.com/psamim/dotfiles/blob/master/doom/config.el
+(setq org-agenda-category-icon-alist
+ `(
+   ("todo", (list (all-the-icons-material "check_box" :height 1.2)) nil nil :ascent center)
+   ("work", (list (all-the-icons-material "work" :height 1.2)) nil nil :ascent center)
+   ("chore", "~/.dotfiles/icons/loop.svg" nil nil :ascent center)
+   ("events", "~/.dotfiles/icons/calendar.svg" nil nil :ascent center)
+   ("walk", "~/.dotfiles/icons/walk.svg" nil nil :ascent center)
+   ("solution", "~/.dotfiles/icons/solution.svg" nil nil :ascent center)
+   ))
+(setq org-agenda-block-separator (string-to-char " "))
+(setq org-agenda-custom-commands
+      '(("o" "My Agenda"
+         ((todo "TODO" (
+                        (org-agenda-overriding-header "\n⚡ Do Today:\n⎺⎺⎺⎺⎺⎺⎺⎺⎺")
+                        (org-agenda-remove-tags t)
+                        (org-agenda-prefix-format " %-2i %-15b")
+                        (org-agenda-todo-keyword-format "")
+                        ))
+          (agenda "" (
+                      (org-agenda-start-day "+0d")
+                      (org-agenda-span 5)
+                      (org-agenda-overriding-header "⚡ Schedule:\n⎺⎺⎺⎺⎺⎺⎺⎺⎺")
+                      (org-agenda-repeating-timestamp-show-all nil)
+                      (org-agenda-remove-tags t)
+                      (org-agenda-prefix-format   "  %-3i  %-15b %t%s")
+                      (org-agenda-todo-keyword-format " ☐ ")
+                      (org-agenda-current-time-string "⮜┈┈┈┈┈┈┈ now")
+                      (org-agenda-scheduled-leaders '("" ""))
+                      (org-agenda-time-grid (quote ((daily today remove-match)
+                                                    (0900 1200 1500 1800 2100)
+                                                    "      " "┈┈┈┈┈┈┈┈┈┈┈┈┈")))
+                      ))
+          ))))
+;; package config
+(use-package! deft
+  :config (setq deft-directory "~/documents/Dropbox/Apps/Orgzly"
+                deft-extensions '("org")
+                deft-use-filename-as-title nil
+                deft-use-filter-string-for-filename t
+                deft-file-naming-rules '((noslash . "-")
+                                         (nospace . "_")
+                                         (case-fn . downcase))
+                deft-org-mode-title-prefix t))
+(use-package! org-chef
+  :commands (org-chef-insert-recipe org-chef-get-recipe-from-url))
+(use-package! org-super-agenda
+  :commands (org-super-agenda-mode))
+(after! org-agenda
+  (org-super-agenda-mode))
+(after! org-superstar
+  (setq org-superstar-headline-bullets-list '("◉" "○" "✸" "✿" "✤" "✜" "◆" "▶")
+        ;; org-superstar-headline-bullets-list '("Ⅰ" "Ⅱ" "Ⅲ" "Ⅳ" "Ⅴ" "Ⅵ" "Ⅶ" "Ⅷ" "Ⅸ" "Ⅹ")
+        org-superstar-prettify-item-bullets t ))
+(after! org
+  (setq org-ellipsis " ▾ "
+        org-startup-folded t
+        org-priority-highest ?A
+        org-priority-lowest ?E
+        org-priority-faces
+        '((?A . 'all-the-icons-red)
+          (?B . 'all-the-icons-orange)
+          (?C . 'all-the-icons-yellow)
+          (?D . 'all-the-icons-green)
+          (?E . 'all-the-icons-blue))))
+(setq rustic-lsp-server 'rust-analyzer)
+;; custom functions
 (defun obsoke/ediff-dotfile-and-template ()
   "ediff the current `dotfile' with the template"
   (interactive)
   (ediff-files
    "~/.doom.d/init.el"
    "~/.emacs.d/init.example.el"))
-
-;; Some functionality uses this to identify you, e.g. GPG configuration, email
-;; clients, file templates and snippets.
-(setq user-full-name "Dale Karp"
-      user-mail-address "dale@dale.io")
-
-(use-package! deft
-  :init (setq-default deft-directory "~/documents/Dropbox/Apps/Orgzly"
-                      deft-extensions '("org")
-                      deft-use-filename-as-title nil
-                      deft-use-filter-string-for-filename t
-                      deft-file-naming-rules '((noslash . "-")
-                                               (nospace . "_")
-                                               (case-fn . downcase))
-                      deft-org-mode-title-prefix t))
-
-;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
-;; are the three important ones:
-;;
-;; + `doom-font'
-;; + `doom-variable-pitch-font'
-;; + `doom-big-font' -- used for `doom-big-font-mode'; use this for
-;;   presentations or streaming.
-;;
-;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
-;; font string. You generally only need these two:
-(setq doom-font (font-spec :family "monospace" :size 20))
-
-;; There are two ways to load a theme. Both assume the theme is installed and
-;; available. You can either set `doom-theme' or manually load a theme with the
-;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-one)
-
-;; If you use `org' and don't want your org files in the default location below,
-;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/documents/Dropbox/Apps/Orgzly/")
-
-;; This determines the style of line numbers in effect. If set to `nil', line
-;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type t)
-
- ;; Reduce the delay time for when SPC (which-key) brings up list of keys
-(setq which-key-idle-delay 0.25)
-
-;; Here are some additional functions/macros that could help you configure Doom:
-;;
-;; - `load!' for loading external *.el files relative to this one
-;; - `use-package' for configuring packages
-;; - `after!' for running code after a package has loaded
-;; - `add-load-path!' for adding directories to the `load-path', relative to
-;;   this file. Emacs searches the `load-path' when you load packages with
-;;   `require' or `use-package'.
-;; - `map!' for binding new keys
-;;
-;; To get information about any of these functions/macros, move the cursor over
-;; the highlighted symbol at press 'K' (non-evil users must press 'C-c g k').
-;; This will open documentation for it, including demos of how they are used.
-;;
-;; You can also try 'gd' (or 'C-c g d') to jump to their definition and see how
-;; they are implemented.
-(setq rustic-lsp-server 'rust-analyzer)
