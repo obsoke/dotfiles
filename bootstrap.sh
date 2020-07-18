@@ -10,7 +10,6 @@ ln -sf ${BASEDIR}/config/alacritty $HOME/.config/
 ln -sf ${BASEDIR}/config/picom $HOME/.config/
 ln -sf ${BASEDIR}/config/i3 $HOME/.config/
 ln -sf ${BASEDIR}/config/polybar $HOME/.config/
-ln -sf ${BASEDIR}/config/termite $HOME/.config/
 ln -sf ${BASEDIR}/config/user-dirs.dirs $HOME/.config/
 
 # doom-emacs
