@@ -16,7 +16,7 @@
 
  ;; Reduce the delay time for when SPC (which-key) brings up list of keys
  which-key-idle-delay 0.25)
-(setq org-directory "~/documents/Dropbox/Apps/Orgzly")
+(setq org-directory "~/documents/Dropbox/org")
 (setq org-agenda-skip-scheduled-if-done t
       org-agenda-skip-deadline-if-done t
       org-agenda-include-deadlines t
@@ -110,7 +110,7 @@
           ))))
 ;; package config
 (use-package! deft
-  :config (setq deft-directory "~/documents/Dropbox/Apps/Orgzly"
+  :config (setq deft-directory "~/documents/Dropbox/org"
                 deft-extensions '("org")
                 deft-use-filename-as-title nil
                 deft-use-filter-string-for-filename t
@@ -131,6 +131,9 @@
 (after! org
   (setq org-ellipsis " ▾ "
         org-startup-folded t
+        ;; The below two lines allow source code in src blocks to be aligned
+        org-src-preserve-indentation nil
+        org-edit-src-content-indentation 0
         org-priority-highest ?A
         org-priority-lowest ?E
         org-priority-faces
@@ -140,6 +143,10 @@
           (?D . 'all-the-icons-green)
           (?E . 'all-the-icons-blue))))
 (setq rustic-lsp-server 'rust-analyzer)
+
+(setq org-roam-directory "/home/dale/documents/Dropbox/org/roam"
+      org-roam-completion-anywhere t)
+
 ;; custom functions
 (defun obsoke/ediff-dotfile-and-template ()
   "ediff the current `dotfile' with the template"

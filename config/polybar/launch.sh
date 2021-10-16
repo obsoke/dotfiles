@@ -10,4 +10,4 @@ while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
 # Launch
 MONITOR=HDMI-0 polybar -c ~/.config/polybar/config.ini --reload main &
-MONITOR=DVI-I-1 polybar -c ~/.config/polybar/config.ini --reload two &
+MONITOR=DVI-D-0 polybar -c ~/.config/polybar/config.ini --reload two &

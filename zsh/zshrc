@@ -10,15 +10,26 @@ fi
 
 # vi mode
 bindkey -v
-
+# bind ctrl+R to searching history
+bindkey '^R' history-incremental-search-backward
 # auto complete
 autoload -Uz compinit
 compinit
 zstyle ':completion:*' menu select
 setopt COMPLETE_ALIASES
-
 setopt promptsubst
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+# shell history
+HISTSIZE=100000000
+SAVEHIST=100000000
+setopt appendhistory
+setopt HIST_IGNORE_SPACE
+setopt extended_history
+setopt hist_expire_dups_first
+setopt hist_ignore_dups # ignore duplication command history list
+setopt hist_ignore_space
+setopt hist_verify
+HISTFILE=~/.zsh_history
 
 # aliases
 alias l='exa -l --group-directories-first'
@@ -42,6 +53,11 @@ eval $(keychain --eval --quiet --noask id_rsa)
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Autojump
+eval "$(lua /usr/share/z.lua/z.lua --init zsh enhanced once fzf)"
+
+# NVM
+source /usr/share/nvm/init-nvm.sh
