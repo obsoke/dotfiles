@@ -1,13 +1,11 @@
-# Dotfiles v6
+# Dotfiles v7
 
-There are two branches that are used on two different machines:
+These dotfiles are meant to be used in combination with [GNU Stow](https://www.gnu.org/software/stow/). To install a module, use the stow command in combination with the module/folder name (e.g.: `stow zsh` for zsh dotfiles).
 
-- _master_ is used on an older desktop machine running Arch Linux + X11
-- _work_ is used on my work laptop running Arch Linux + Wayland
+The contents of each top-level "module" (e.g.: `/config`,`/zsh`) are symlinked relative to the home directory (`~/`).
 
-## Install
-
-1. Clone into `~/.dotfiles`.
-2. `cd ~/.dotfiles` & run `bootstrap.sh`.
-3. ???
-4. Dotfiles.
+```sh
+cd ~/.dotfiles # cd into cloned directory
+stow zsh # install zsh dotfiles
+stow config # install various .config for used apps
+```
