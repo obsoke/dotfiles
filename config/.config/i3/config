@@ -129,22 +129,11 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
-# Assign clients to workspaces 
-assign [class="^Slack"] 9
-assign [class="^Riot"] 9
-
-assign [class="^Thunderbird$"] 10
-
 # Floating window settings
 for_window [class="Lxappearance"] floating enable
 for_window [class="feh"] floating enable
 for_window [class="Steam"] floating enable
-for_window [class="Unity"] floating enable
 for_window [class="Zeal"] floating enable
-for_window [class="keepassxc"] floating enable
-for_window [class="ld39"] floating enable
-for_window [class="FLOAT"] floating enable
-for_window [class="Godot"] floating enable
 for_window [class="^Chromium$" window_role="^pop-up$"] floating enable
 
 
