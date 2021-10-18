@@ -69,7 +69,10 @@
 
 (after! org-roam
   (setq org-roam-directory "/home/dale/documents/Dropbox/org/roam"
-      org-roam-completion-anywhere t))
+        org-roam-completion-anywhere t
+        org-roam-dailies-capture-templates
+        '(("d" "default" entry "* %<%I:%M %p>: %?"
+           :if-new (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n")))))
 
 (use-package! deft
   :config (setq deft-directory org-directory
