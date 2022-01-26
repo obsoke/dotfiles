@@ -68,8 +68,26 @@
    org-edit-src-content-indentation 0))
 
 (after! org-roam
-  (setq org-roam-directory "/home/dale/documents/Dropbox/org/roam"
-      org-roam-completion-anywhere t))
+  (setq
+   org-roam-directory "/home/dale/documents/Dropbox/org/roam"
+   org-roam-db-node-include-function (lambda ()
+     (not (member "daily" (org-get-tags))))))
+
+(use-package! websocket
+    :after org-roam)
+
+(use-package! org-roam-ui
+    :after org-roam ;; or :after org
+;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
+;;         a hookable mode anymore, you're advised to pick something yourself
+;;         if you don't care about startup time, use
+;;  :hook (after-init . org-roam-ui-mode)
+    :config
+    (setq org-roam-ui-sync-theme t
+          org-roam-ui-follow t
+          org-roam-ui-update-on-save t
+          org-roam-ui-open-on-start t
+          org-roam-completion-anywhere t))
 
 (use-package! deft
   :config (setq deft-directory org-directory
@@ -91,3 +109,37 @@
   (ediff-files
    "~/.doom.d/init.el"
    "~/.emacs.d/init.example.el"))
+
+
+;; TEMP: in order to filter tags from org-roam files
+(cl-defun my/org-roam-node--filter-by-tags (node &optional included-tags excluded-tags)
+  "Filter org-roam-node by tags."
+  (let* ((tags (org-roam-node-tags node))
+         (file-path (org-roam-node-file node))
+         (rel-file-path (f-relative file-path org-roam-directory))
+         (parent-directories (butlast (f-split rel-file-path)))
+         (tags (cl-union tags parent-directories)))
+    (if (or
+         ;; (and included-tags (cl-notevery (lambda (x) (cl-member x tags :test #'string=)) included-tags))
+         (and included-tags (not (cl-intersection included-tags tags :test #'string=)))
+         (and excluded-tags (cl-intersection excluded-tags tags :test #'string=))
+         ) nil t)))
+
+(cl-defun my/org-roam-node-find (included-tags excluded-tags)
+  "Modded org-roam-node-find which filters nodes using tags."
+  (interactive)
+  (org-roam-node-find nil nil
+                      (lambda (node) (my/org-roam-node--filter-by-tags node included-tags excluded-tags))))
+
+(cl-defun my/org-roam-node-insert (included-tags excluded-tags)
+  "Modded org-roam-node-insert which filters nodes using tags."
+  (interactive)
+  (org-roam-node-insert
+   (lambda (node) (my/org-roam-node--filter-by-tags node included-tags excluded-tags))))
+
+
+;; Override org-roam's "Find node" with one that filters out :daily: files
+(map! :leader
+      :prefix ("n" . "notes")
+      (:prefix ("r" . "roam")
+       :desc "Find node" "f" #'(lambda () (interactive) (my/org-roam-node-find nil '("daily" "captures")))))
