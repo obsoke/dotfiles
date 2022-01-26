@@ -70,6 +70,10 @@
 (after! org-roam
   (setq
    org-roam-directory "/home/dale/documents/Dropbox/org/roam"
+   org-roam-completion-anywhere t
+	org-roam-dailies-capture-templates
+	'(("d" "default" entry "* %<%I:%M %p>: %?"
+	   :if-new (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n")))
    org-roam-db-node-include-function (lambda ()
      (not (member "daily" (org-get-tags))))))
 
@@ -88,6 +92,10 @@
           org-roam-ui-update-on-save t
           org-roam-ui-open-on-start t
           org-roam-completion-anywhere t))
+=======
+  (setq org-roam-directory "/home/dale/documents/Dropbox/org/roam"
+	))
+>>>>>>> 2ffc7800c73465008a75f3d90cedb6ff2c996c2f
 
 (use-package! deft
   :config (setq deft-directory org-directory
