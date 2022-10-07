@@ -134,7 +134,10 @@ for_window [class="Lxappearance"] floating enable
 for_window [class="feh"] floating enable
 for_window [class="Steam"] floating enable
 for_window [class="Zeal"] floating enable
-for_window [class="^Chromium$" window_role="^pop-up$"] floating enable
+for_window [window_role="pop-up"] floating enable
+for_window [title="(?i)bevy"] floating enable
+for_window [class="mmo_game"] floating enable
+
 
 
 #########
@@ -161,7 +164,7 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec --no-startup-id xrandr --output HDMI-0 --mode 3840x2160 --primary --dpi 144 --output DVI-D-0 --auto -o left --left-of HDMI-0
 exec --no-startup-id sh ~/.fehbg &
 exec --no-startup-id picom --config ~/.config/picom/picom.conf -b &
-exec --no-startup-id workrave &
+#exec --no-startup-id workrave &
 exec --no-startup-id redshift &
 exec --no-startup-id xss-lock -- i3lock-fancy 
 exec --no-startup-id xcape

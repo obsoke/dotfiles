@@ -65,7 +65,10 @@
 (after! org
   (setq ;; The below two lines allow source code in src blocks to be aligned
    org-src-preserve-indentation nil
-   org-edit-src-content-indentation 0))
+   org-edit-src-content-indentation 0
+
+   org-hugo-base-dir "/home/dale/projects/obsoke.com"
+   org-hugo-section "notes"))
 
 (after! org-roam
   (setq
