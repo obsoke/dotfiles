@@ -119,9 +119,9 @@
   (interactive)
   (ediff-files
    "~/.doom.d/init.el"
-   "~/.emacs.d/init.example.el"))
+   "~/.emacs.d/templates/init.example.el"))
 
-
+;; Override org-roam's "Find node" with one that filters out :daily: files
 ;; TEMP: in order to filter tags from org-roam files
 (cl-defun my/org-roam-node--filter-by-tags (node &optional included-tags excluded-tags)
   "Filter org-roam-node by tags."
@@ -135,21 +135,17 @@
          (and included-tags (not (cl-intersection included-tags tags :test #'string=)))
          (and excluded-tags (cl-intersection excluded-tags tags :test #'string=))
          ) nil t)))
-
 (cl-defun my/org-roam-node-find (included-tags excluded-tags)
   "Modded org-roam-node-find which filters nodes using tags."
   (interactive)
   (org-roam-node-find nil nil
                       (lambda (node) (my/org-roam-node--filter-by-tags node included-tags excluded-tags))))
-
 (cl-defun my/org-roam-node-insert (included-tags excluded-tags)
   "Modded org-roam-node-insert which filters nodes using tags."
   (interactive)
   (org-roam-node-insert
    (lambda (node) (my/org-roam-node--filter-by-tags node included-tags excluded-tags))))
 
-
-;; Override org-roam's "Find node" with one that filters out :daily: files
 (map! :leader
       :prefix ("n" . "notes")
       (:prefix ("r" . "roam")
