@@ -155,7 +155,7 @@ input type:keyboard {
     # Make the current focus fullscreen
     bindsym $mod+f fullscreen
 
-    # Toggle the current focus between tiling and floating mode
+    # Toggle the current focus between tiling and loating mode
     bindsym $mod+Shift+space floating toggle
 
     # Swap focus between the tiling area and the floating area
@@ -199,6 +199,11 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
+
+#
+# Auto-float window settings
+#
+for_window [class="mmo_game"] floating enable
 
 #
 # Status Bar:
