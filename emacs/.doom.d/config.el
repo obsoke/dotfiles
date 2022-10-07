@@ -55,12 +55,16 @@
 
 ;; general config
 (setq-default
+ ;; general
+ typescript-indent-level 2
+
  ;; company
  company-idle-delay 0.2
  company-minimum-prefix-length 2
 
  ;; Reduce the delay time for when SPC (which-key) brings up list of keys
  which-key-idle-delay 0.25)
+(setenv "TSSERVER_LOG_FILE" "/tmp/tsserver.log")
 
 (after! org
   (setq ;; The below two lines allow source code in src blocks to be aligned
