@@ -67,9 +67,11 @@
 (setenv "TSSERVER_LOG_FILE" "/tmp/tsserver.log")
 
 (after! org
-  (setq ;; The below two lines allow source code in src blocks to be aligned
+  (setq
+   ;; The below two lines allow source code in src blocks to be aligned
    org-src-preserve-indentation nil
    org-edit-src-content-indentation 0
+   ;; Keep plain lists collapsed when cycling through primary list expansion/collapse
    org-cycle-include-plain-lists 'integrate
 
    org-hugo-base-dir "/home/dale/projects/obsoke.com"
