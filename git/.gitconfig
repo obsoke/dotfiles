@@ -1,8 +1,10 @@
 [user]
-	email = dale@dale.io
+	email = obsoke@obsoke.com
 	name = Dale Karp
 
 [alias]
+	s = status
+	c = commit
 	prune-remotes = fetch --prune
 	undo = reset --soft HEAD^
 	glog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
@@ -28,12 +30,21 @@
     diffFilter = delta --color-only
 
 [delta]
-    features = line-numbers decorations
+    features = default magit-delta line-numbers decorations
     whitespace-error-style = 22 reverse
 
 [delta "decorations"]
     commit-decoration-style = bold yellow box ul
     file-style = bold yellow ul
     file-decoration-style = none
+
+[delta "default"]
+    line-numbers = true
+
+[delta "magit-delta"]
+    line-numbers = false
+
 [pull]
 	ff = only
+[core]
+	editor = nvim
