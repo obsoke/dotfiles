@@ -5,7 +5,7 @@
 # -o pipefail: return code is set to status of last process in pipe
 set -euo pipefail
 
-echo "Hello!"
-
 # Install standard dots
-stow --dotfiles zsh git mise
+stow --dotfiles $(ls -d */)
+
+# To uninstall: stow --dotfiles -D $(ls -d */) 

@@ -8,7 +8,7 @@ This dotfiles repo takes advantage of stow's `--dotfiles` option - any file/fold
 
 ```sh
 cd ~/.dotfiles # cd into cloned directory
-./install
+./install.sh
 # OR
 stow --dotfiles zsh git config [...other packages]
 ```
